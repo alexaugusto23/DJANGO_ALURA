@@ -35,7 +35,12 @@ python manage.py runserver
 python manage.py createsuperuser
 python manage.py help
 
-
+pip install whitenoise
+STATIC_ROOT = BASE_DIR / "staticfiles"
+py manage.py collectstatic 
+pip install gunicorn
+pipenv install
+pip install env 
 -------------------------------------------------
 py -m venv venv_xxx       #maquina virtual	
 venv_xxx\Scripts\activate  #ativando maquina virtual	
