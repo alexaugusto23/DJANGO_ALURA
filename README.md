@@ -6,6 +6,7 @@
 
 # Introdução ao Django 2: Modelo, Rotas e Views
 __Por: Alexsandro Augusto Ignácio e instrutor | Alura
+__Link para acessar o projeto:https://app-receita-alura.herokuapp.com/__
 
 * Aprenda a desenvolver aplicações web utilizando a linguagem Python
 * Desenvolva uma aplicação do zero, seguindo as principais convenções e boas práticas
