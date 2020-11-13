@@ -1,0 +1,62 @@
+python --version
+pip --version
+python -m pip install --upgrade pip
+py -m pip install --upgrade pip
+pipenv install 
+pip install pipenv
+pip install virtualenv
+py -m venv djando_venv
+virtualenv djando_venv
+djando_venv\Scripts\activate  
+\venv\Scripts\activate
+\venv\Scripts\deactivate
+pip freeze > requirements.txt
+pip install Django
+pip install psycopg2
+py 
+import django
+print(django.get_version())
+django-admin startproject django_alura
+cd django_alura
+settings.py #faça a mudança para o banco de dados que for ser utilizado
+python manage.py migrate
+python manage.py startapp cadastro
+models:
+class MyCadastro(models.Model):
+    col = models.CharField(max_length=10)
+python manage.py makemigrations --> python manage.py migrate
+
+
+-------------------------------------------------
+py -m venv venv_xxx       #maquina virtual	
+venv_xxx\Scripts\activate  #ativando maquina virtual	
+pip install Flask       	
+pip install pip ou py -m pip install --upgrade pip	
+pip install Flask-SQLAlchemy	
+pip install pipenv	
+pipenv install requests	
+pipenv install "dependency"	
+python -m venv crud_env	
+crud_env\Scripts\ activate	
+pip freeze > requirements.txt	
+heroku	
+pipenv check	
+heroku login	
+cltr c devolve o prompt	
+heroku create	
+git push heroku master	
+git push heroku HEAD:master	
+heroku ps:scale web=1	
+heroku open	
+heroku apps	
+heroku apps:destroy "nome do app sem aspas"	
+heroku apps:destroy arcene-40228	
+heroku buildpacks:clear 	
+heroku logs --tail	
+heroku logs  > herokulogs	
+heroku apps:rename crud-cadastro-alunos --app boiling-tundra-56022 	
+heroku apps:rename maapsystem_sorvetunes --app fathomless-reaches-29620	
+heroku git:remote -a maapsystem-sorvetunes	
+git add .	
+git commit -am "make it better"	
+git push heroku master
