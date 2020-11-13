@@ -26,7 +26,7 @@ SECRET_KEY = '-u^n2#h5g^-vx#8dv35j8ld!88j0n1ndwlst-sg^#6gob#27b&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://app-receita-alura.herokuapp.com/","127.0.0.1"]
 
 
 # Application definition

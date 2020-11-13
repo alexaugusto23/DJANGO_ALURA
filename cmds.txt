@@ -32,6 +32,7 @@ class MyCadastro(models.Model):
     col = models.CharField(max_length=10)
 python manage.py makemigrations --> python manage.py migrate
 python manage.py runserver
+python manage.py runserver 7000
 python manage.py createsuperuser
 python manage.py help
 
@@ -41,6 +42,10 @@ py manage.py collectstatic
 pip install gunicorn
 pipenv install
 pip install env 
+
+
+
+
 -------------------------------------------------
 py -m venv venv_xxx       #maquina virtual	
 venv_xxx\Scripts\activate  #ativando maquina virtual	
