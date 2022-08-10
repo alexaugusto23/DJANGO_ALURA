@@ -1,3 +1,4 @@
+########################## Preparação do Ambiente ##############################
 Verificar versão: python --version
 python --version
 pip --version
@@ -14,58 +15,146 @@ pipenv install
 pip install pipenv
 pip install virtualenv
 
-
 Criando Ambiente Virtual: 
-py -m venv djando_venv
-virtualenv djando_venv
-djando_venv\Scripts\activate  
+py -m venv venv
+virtualenv venv
+
+Ativando Ambiente Virtual:
 \venv\Scripts\activate
 \venv\Scripts\deactivate
+linux: \venv\bin\activate
+win: \venv\Scripts\activate.bat
+win: \venv\Scripts\activate.ps1
+
+Instalando o django
+pip install django
+pip install django==2.2.6
+pip install psycopg2
+
+Verificar pacotes:
+pip freeze
+
+Verificar versão:
+import django
+print(django.get_version())
 
 Criando Requirements: 
 pip freeze > requirements.txt
 
-Instalando o django
-pip instal django
-pip install psycopg2
+########################## Comandos Django: ##############################
 
+Veiricar comandos django: django-admin help 
 
-py
-django-admin help 
-import django
-print(django.get_version())
-django-admin startproject alurareceita # Cria projeto dentro de uma pasta com o mesmo nome do projeto
-django-admin startproject alurareceita . #Cria pasta separada
-cd django_alura
-settings.py #faça a mudança para o banco de dados que for ser utilizado
-django timezone list
-settings.py
-LANGUAGE_CODE = 'pt-br'
-TIME_ZONE = 'America/Sao_Paulo'
-python manage.py migrate
-python manage.py startapp cadastro
-models:
-class MyCadastro(models.Model):
-    col = models.CharField(max_length=10)
-python manage.py makemigrations --> python manage.py migrate
+Cria projeto dentro de uma pasta com o mesmo nome do projeto:
+django-admin startproject alurareceita
+
+Cria o pojeto em uma única pasta:
+django-admin startproject alurareceita . 
+
+Iniciar projeto: django-admin startproject <nome_do_projeto>
+
+manage.py: script para gerenciar a aplicação Django.
+init.py: arquivo vazio que indica um package ou pacote.
+settings.py: arquivo de configuração do projeto.
+urls.py: todas as urls do projeto são definidas aqui.
+wsgi.py: protocolo que serve http.
+
+Estrutura:
+mysite/
+    manage.py
+    db.sqlite3
+    __pycache__/
+        __init__.cpython-39.pyc
+        __settings__.cpython-39.pyc
+        __urls__.cpython-39.pyc
+        __wsgi__.cpython-39.pyc
+    mysite/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+
+Iniciando um app:
+python manage.py startapp nome_do_app
+python manage.py startapp aprendendodjango
+
+Estrutura:
+myapp/
+    migrations/ 
+        __init__.py
+   __init__.py
+   admin.py
+   apps.py
+   models.py
+   tests.py
+   views.py 
+
+Configurando o arquivo settings.py:
+
+Na linha 106
+de: LANGUAGE_CODE = 'pt-br' para: LANGUAGE_CODE = 'en-us'
+de: TIME_ZONE = 'UTC' para: TIME_ZONE = 'America/Sao_Paulo'
+
+Criando Visualizações:
+Vamos escrever a primeira visualização. 
+Abra o arquivo polls / views.py:
+
+from django.http import HttpResponse
+
+def index(request): 
+    return HttpResponse("Hello, world. You're at the polls index.")
+
+Mapeando URL´s no arquivo urls.py:
+
+from django.conf.urls import patterns, url
+from polls import views
+
+urlpatterns = patterns('', url(r'^$', views.index, name='index'), )
+
+r’^$’: expressão regular que representa um caminho acessado via navegador, quando solicitado.
+views: representa a view que deve ser executada (aquela que foi importada lá em cima, no caso a de perfil).
+index: chama a função que queremos executar.
+
+Criando Banco de Dados:
+criar banco de dados: python manage.py migrate
+
+Criando um usuário administrador:
+python manage.py createsuperuser
+
+Executar o Servidor: python manage.py runserver
+python manage.py runserver 0.0.0.0:8000 
+python manage.py runserver xxx.xxx.xxx.xx:8000
 python manage.py runserver
 python manage.py runserver 7000
-python manage.py createsuperuser
-python manage.py help
 
-pip install whitenoise
-STATIC_ROOT = BASE_DIR / "staticfiles"
-py manage.py collectstatic 
-pip install gunicorn
-pipenv install
-pip install env 
+Verificar se o app executa no endereços:
+http://localhost:8000/
+http://127.0.0.1:8000/
+
+Torne o pool app modificável no administrador:
+
+from django.contrib import admin
+from polls.models import Question, Choice
+admin.site.register(Question) admin.site.register(Choice)
+
+Criando app:
+python manage.py startapp receitas
+
+Registrando app:
+no arquivo apps.py pegar o name = 'receitas' e 
+ir em settings para registar em:
+INSTALLED_APP = ['receitas']
+
+Criando URLs:
+No app receitas criar o arquivo urls.py
 
 
 
 
--------------------------------------------------
-py -m venv venv_xxx       #maquina virtual	
-venv_xxx\Scripts\activate  #ativando maquina virtual	
+#########################################################
+
+---------------------------------------------------------
+	
 pip install Flask       	
 pip install pip ou py -m pip install --upgrade pip	
 pip install Flask-SQLAlchemy	
