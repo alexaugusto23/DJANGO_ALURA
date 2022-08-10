@@ -143,7 +143,9 @@ python manage.py startapp receitas
 Registrando app:
 no arquivo apps.py pegar o name = 'receitas' e 
 ir em settings para registar em:
-INSTALLED_APP = ['receitas']
+INSTALLED_APP = ['receitas',]
+
+OBS: não esquecer da vírgula, se não dá erro.
 
 Criando URLs:
 No app receitas criar o arquivo urls.py
@@ -165,10 +167,59 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse('<h1>Receitas</h1>')
 
+Registar url no urls do project:
+
+Sempre que cirar uma url no app registar no project:
+
+from django.contrib import admin
+from django.urls import path, include
 
 
+urlpatterns = [
+    path('', include('receitas.urls')),
+    path('admin/', admin.site.urls),
+]
+
+Criando template:
+
+No app criar um folder template e dentro dele colocar
+o arquivo html, 'index.html' 
+no arquivo digitar html:5 para criar
+a estrutura.
+
+Redenrizar a view pelo template:
+
+from django.shortcuts import render
+
+# Create your views here.
+def index(request):
+    return render(request,'index.html')
+
+Referenciando templates, estilos e javascript:
+No arquivo settings.py na variavel TEMPLATES
+atualizar o dicionário na chave 
+'DIRS': [os.path.join(BASE_DIR, 'receitas/templates')] 
+
+e também mapear os arquivos statics
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'alurareceita/static')
+]
+
+Colar na pasta static os arquivos css e js.
+
+depois dar o comando no cmd: python manage.py collectstatic
 
 #########################################################
+
+Material de ajuda:
+
+https://pt.wikipedia.org/wiki/Introspec%C3%A7%C3%A3o_%28computa%C3%A7%C3%A3o%29
+https://docs.djangoproject.com/pt-br/2.2/misc/design-philosophies/
+
+
 
 ---------------------------------------------------------
 	
