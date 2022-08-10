@@ -224,6 +224,8 @@ Colocar no css e js e demais arquivos:
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{% static 'site.css' %}">
 
+    <a href="index.html"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+
     <!-- jQuery-2.2.4 js -->
     <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
     <!-- Popper js -->
@@ -234,6 +236,11 @@ Colocar no css e js e demais arquivos:
     <script src="{% static 'js/plugins/plugins.js' %}"></script>
     <!-- Active js -->
     <script src="{% static 'js/active.js' %}"></script>
+
+
+
+
+
 
 Criar uma função em Views e Registar a url 
 do arquivo receitas.html
