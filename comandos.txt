@@ -148,6 +148,23 @@ INSTALLED_APP = ['receitas']
 Criando URLs:
 No app receitas criar o arquivo urls.py
 
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+
+Criando Views:
+No app receitas alterar o arquivo views.py
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+def index(request):
+    return HttpResponse('<h1>Receitas</h1>')
+
 
 
 
