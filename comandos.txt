@@ -211,6 +211,34 @@ STATICFILES_DIRS = [
 Colar na pasta static os arquivos css e js.
 
 depois dar o comando no cmd: python manage.py collectstatic
+o proprio django cópia no app um pasta
+static com os arquivo do project/static
+
+No html colocar código python:
+{% load static %} acima do doctype,
+
+Colocar no css e js e demais arquivos: 
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'site.css' %}">
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/bootstrap/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'js/plugins/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+
+Criar uma função em Views e Registar a url 
+do arquivo receitas.html
+
+
 
 #########################################################
 
