@@ -1,5 +1,10 @@
+Verificar versão: python --version
 python --version
 pip --version
+
+
+
+Criando Ambiente Virtual: 
 python -m pip install --upgrade pip
 py -m pip install --upgrade pip
 pipenv install 
@@ -10,9 +15,15 @@ virtualenv djando_venv
 djando_venv\Scripts\activate  
 \venv\Scripts\activate
 \venv\Scripts\deactivate
+
+Criando Requirements: 
 pip freeze > requirements.txt
-pip install Django
+
+Instalando o django
+pip instal django
 pip install psycopg2
+
+
 py
 django-admin help 
 import django
