@@ -1,0 +1,98 @@
+Verificar versão: python --version
+python --version
+pip --version
+
+Comandos para prompt:
+criar diretório: mkdir
+caminhar entre diretórios: cd
+listar contéudo do diretório: ls ou dir
+
+Atualizando ou instalando PIP:
+python -m pip install --upgrade pip
+py -m pip install --upgrade pip
+pipenv install 
+pip install pipenv
+pip install virtualenv
+
+
+Criando Ambiente Virtual: 
+py -m venv djando_venv
+virtualenv djando_venv
+djando_venv\Scripts\activate  
+\venv\Scripts\activate
+\venv\Scripts\deactivate
+
+Criando Requirements: 
+pip freeze > requirements.txt
+
+Instalando o django
+pip instal django
+pip install psycopg2
+
+
+py
+django-admin help 
+import django
+print(django.get_version())
+django-admin startproject alurareceita # Cria projeto dentro de uma pasta com o mesmo nome do projeto
+django-admin startproject alurareceita . #Cria pasta separada
+cd django_alura
+settings.py #faça a mudança para o banco de dados que for ser utilizado
+django timezone list
+settings.py
+LANGUAGE_CODE = 'pt-br'
+TIME_ZONE = 'America/Sao_Paulo'
+python manage.py migrate
+python manage.py startapp cadastro
+models:
+class MyCadastro(models.Model):
+    col = models.CharField(max_length=10)
+python manage.py makemigrations --> python manage.py migrate
+python manage.py runserver
+python manage.py runserver 7000
+python manage.py createsuperuser
+python manage.py help
+
+pip install whitenoise
+STATIC_ROOT = BASE_DIR / "staticfiles"
+py manage.py collectstatic 
+pip install gunicorn
+pipenv install
+pip install env 
+
+
+
+
+-------------------------------------------------
+py -m venv venv_xxx       #maquina virtual	
+venv_xxx\Scripts\activate  #ativando maquina virtual	
+pip install Flask       	
+pip install pip ou py -m pip install --upgrade pip	
+pip install Flask-SQLAlchemy	
+pip install pipenv	
+pipenv install requests	
+pipenv install "dependency"	
+python -m venv crud_env	
+crud_env\Scripts\ activate	
+pip freeze > requirements.txt	
+heroku	
+pipenv check	
+heroku login	
+cltr c devolve o prompt	
+heroku create	
+git push heroku master	
+git push heroku HEAD:master	
+heroku ps:scale web=1	
+heroku open	
+heroku apps	
+heroku apps:destroy "nome do app sem aspas"	
+heroku apps:destroy arcene-40228	
+heroku buildpacks:clear 	
+heroku logs --tail	
+heroku logs  > herokulogs	
+heroku apps:rename crud-cadastro-alunos --app boiling-tundra-56022 	
+heroku apps:rename maapsystem_sorvetunes --app fathomless-reaches-29620	
+heroku git:remote -a maapsystem-sorvetunes	
+git add .	
+git commit -am "make it better"	
+git push heroku master
