@@ -275,9 +275,28 @@ def receita(request):
     return render(request,'receita.html')
 
 
+Criando base.html para retira código répetido e estender no demais html.
+
+no base html:
+{% block content %} {% endblock %}
+
+nos demais:
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block content %} 
+{% endblock %}
+
+Criar htlm para colocar menu e footer e deixar separado dos demais contéudos:
+{% load static %} menu.html e footer.html
+
+por em index e receita:
+{% include 'partials/menu.html' %} 
+{% include 'partials/footer.html' %}
+
 #########################################################
 
-aula 03 - video2
+
 
 Material de ajuda:
 
