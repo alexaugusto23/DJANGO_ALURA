@@ -395,6 +395,83 @@ Fazendo o CRUD Create, Read, Update, Delete a partir do admin:
 
 No arquivo admin.py é preciso registar os modelos para poder adminitrar as querys:
 
+from django.contrib import admin
+from.models import Receita
+
+# Register your models here.
+admin.site.register(Receita)
+
+Depois acessar a rota localhost/admin
+e cadastrar a receita o botão + 
+
+Passar os dados por contexto do BD para o view.py
+
+Importar o modelo:
+
+from django.shortcuts import render
+from .models import Receita
+
+# Create your views here.
+def index(request):
+    receitas = Receita.objects.all()
+    dados = {
+        'receitas':receitas
+    }
+    return render(request,'index.html', dados )
+
+def receita(request):
+    return render(request,'receita.html')
+
+Atualizar o tempate index:
+
+<section class="best-receipe-area">
+    <div class="container">
+        <div class="row">
+            {% if receitas  %}
+            {% for receita in receitas %}
+            <!-- Single Best Receipe Area -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="single-best-receipe-area mb-30">
+                    <img src="{% static 'img/bg-img/foto_receita.png' %}" alt="">
+                    <div class="receipe-content">
+                        <a href="{% url 'receita' %}">
+                            <h5>{{receita.nome_receita}}</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            {% endif%}
+        </div>
+    </div>
+</section>
+
+instalar o pylint:
+pip install pylint-django
+
+colar no settings.json:
+
+{"python.linting.pylintArgs": [
+     "--load-plugins=pylint_django"
+],}
+
+Ajustando o Html Receitas para direceionao o link de acordo com id:
+
+no index:
+<a href="{% url 'receita' receita.id %}">
+
+no urls:
+path('<int:receita_id>', views.receita, name='receita')
+
+views:
+def receita(request, receita_id):
+    return render(request,'receita.html')
+
+Alterar no template menu.html
+no nav bar
+
+
 
 #########################################################
 
