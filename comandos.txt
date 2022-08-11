@@ -336,7 +336,55 @@ No html:
 
 Criando Banco de Dados:
 
-Criar um banco e conecta-lo no arquivo settings.py em alura receitas.
+ativar venv
+venv\Scripts\activate
+
+baixar no pacote:
+pip install psycopg2
+pip install psycopg2-binary
+
+Configurando o banco de dados e conecta-lo no arquivo settings.py em alura receitas.
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'alura_receita',
+        'USER':'postgres',
+        'PASSWORD':'Mag@2022',
+        'HOST':'localhost'
+    }
+}
+
+Criando o modelo das tabelas:
+
+Em models no app receita acessar o arquivo models.py:
+
+from django.db import models
+from datetime import datetime
+
+# Create your models here.
+class Receita(models.Model):
+    nome_receita = models.CharField(max_length=200) # Campo de texto.
+    ingredientes = models.TextField() # Caixa de texto maior.
+    modo_preparo = models.TextField()
+    tempo_preparo = models.IntegerField()
+    rendimento = models.CharField(max_length=100)
+    categoria = models.CharField(max_length=100)
+    date_receita = models.DateTimeField(default=datetime.now, blank=True)
+
+Transferindo modelo da tabela para o banco:
+
+Criando lista de migração:
+
+usar o promtp com o comando: python manage.py makemigrations
+na pasta migrations ficará disponivel o arquivo com a migração.
+
+Realizando a migração com o comando: python manage.py migrate
+
+Depois de executado o comando poderá ser vizualidado no postgresql
+as tabelas criadas.
+
+Fazendo o CRUD Create, Read, Update, Delete a partir do admin
 
 
 #########################################################
@@ -347,19 +395,11 @@ Material de ajuda:
 
 https://pt.wikipedia.org/wiki/Introspec%C3%A7%C3%A3o_%28computa%C3%A7%C3%A3o%29
 https://docs.djangoproject.com/pt-br/2.2/misc/design-philosophies/
-
+https://docs.djangoproject.com/en/2.2/topics/db/models/
 
 
 ---------------------------------------------------------
-	
-pip install Flask       	
-pip install pip ou py -m pip install --upgrade pip	
-pip install Flask-SQLAlchemy	
-pip install pipenv	
-pipenv install requests	
-pipenv install "dependency"	
-python -m venv crud_env	
-crud_env\Scripts\ activate	
+
 pip freeze > requirements.txt	
 heroku	
 pipenv check	
