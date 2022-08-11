@@ -384,7 +384,16 @@ Realizando a migração com o comando: python manage.py migrate
 Depois de executado o comando poderá ser vizualidado no postgresql
 as tabelas criadas.
 
-Fazendo o CRUD Create, Read, Update, Delete a partir do admin
+Criando o Admin para acessar o painel:
+
+usar o comando para cirar login e senha de adminitrador: python manage.py createsuperuser
+login: alexsandro.ignacio
+email: alexsandro.ignacio@wca-ec.com.br
+senha:Mag@2022
+
+Fazendo o CRUD Create, Read, Update, Delete a partir do admin:
+
+No arquivo admin.py é preciso registar os modelos para poder adminitrar as querys:
 
 
 #########################################################
