@@ -294,6 +294,51 @@ por em index e receita:
 {% include 'partials/menu.html' %} 
 {% include 'partials/footer.html' %}
 
+Criando items de forma dinâmica por contexto:
+
+No arquivo view.py passar a variável de contexto:
+
+def index(request):
+    return render(request,'index.html', context= {'nome_da_receita':'Lasanha'} )
+
+No html:
+<h5>{{ nome_da_receita }}</h5>
+
+Utilizando o for: 
+
+def index(request):
+    receitas = {
+        1:'Lasanha',
+        2:'Sopa de Legumes',
+        3:'Sorvete',
+        4:'Picadinho',
+        5:'Baião de Dois',
+        6:'Filé Mingnon'}
+    dados = {
+        'nome_das_receitas':receitas
+    }
+    return render(request,'index.html', dados )
+
+No html:
+    {% for chave, valor in nome_das_receitas.items %}
+    <!-- Single Best Receipe Area -->
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="single-best-receipe-area mb-30">
+            <img src="{% static 'img/bg-img/foto_receita.png' %}" alt="">
+            <div class="receipe-content">
+                <a href="{% url 'receita' %}">
+                    <h5>{{valor}}</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+Criando Banco de Dados:
+
+Criar um banco e conecta-lo no arquivo settings.py em alura receitas.
+
+
 #########################################################
 
 
