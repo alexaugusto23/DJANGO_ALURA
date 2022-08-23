@@ -524,3 +524,84 @@ heroku git:remote -a maapsystem-sorvetunes
 git add .	
 git commit -am "make it better"	
 git push heroku master
+
+## Admin Link e filtros
+
+No admin.py criar a class:
+
+class ListandoReceitas(admin.ModelAdmin):
+    list_display = ('id', 'nome_receita', 'categoria', 'tempo_preparo') # Cria uma nova vizualização
+    list_display_links = ('id', 'nome_receita') # gera link no texto para página de update.
+    search_fields = ('nome_receita',) # cria campo de busca.
+    list_filter =  ('categoria',) # Cria campo de filtro.
+    list_per_page = 2
+
+# Register your models here.
+admin.site.register(Receita, ListandoReceitas)
+
+## Criando APP Pessoas: 
+python manage.py startapp pessoas
+
+ir → seetins.py alurareceita
+
+Registrar o app: 
+INSTALLED_APPS = [
+    'receitas',
+    'pessoas',
+
+ir → models.py pessoas
+
+Criar modelo: 
+
+from django.db import models
+from datetime import datetime
+
+# Create your models here.
+class Pessoa(models.Model):
+    nome = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+
+ir → admin.py pessoas
+
+Registrar no admin
+
+from django.contrib import admin
+from.models import Pessoa
+
+admin.site.register(Pessoa)
+
+Migrar a tabela para o banco: 
+python manage.py makemigrations
+python manage.py migrate
+
+## Criando filtros: 
+
+from django.contrib import admin
+from.models import Pessoa
+
+class ListandoPessoas(admin.ModelAdmin):
+    list_display = ('id', 'nome', 'email')
+    list_display_links = ('id', 'nome', 'email')
+    search_fields = ('nome',)
+    list_per_page = 2
+
+admin.site.register(Pessoa, ListandoPessoas)
+
+# Query SQL para deletar:
+
+SELECT * FROM public.receitas_receita;
+TRUNCATE TABLE receitas_receita RESTART IDENTITY;;
+SELECT * FROM public.receitas_receita;
+
+# Criando FK no models receita: 
+
+from pessoas.models import Pessoa
+
+# Create your models here.
+class Receita(models.Model):
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
+
+Migrar a tabela para o banco: 
+python manage.py makemigrations
+1 → ''
+python manage.py migrate
