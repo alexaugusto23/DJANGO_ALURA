@@ -626,5 +626,69 @@ Como a pessoa já esta no models de receita o views.py não precisa de alteraç�
 
 Flag True para criar uma edição:
 
-i
- publicada = models.BooleanField(default=False)
+No arquivo models.py receita
+publicada = models.BooleanField(default=False)
+
+Para subir no banco:
+python manage.py makemigrations
+python manage.py migrate
+
+ir → views.py para cria lógica de exibição: 
+
+Incluir o filter
+# Create your views here.
+def index(request):
+    receitas = Receita.objects.filter(publicada=True)
+
+Incluír no campo do admin o botão publicar:
+
+Ir → admin.py
+
+class ListandoReceitas(admin.ModelAdmin):
+    list_display = ('id', 'nome_receita', 'categoria', 'tempo_preparo', 'publicada')
+    list_display_links = ('id', 'nome_receita')
+    search_fields = ('nome_receita',)
+    list_filter =  ('categoria',)
+    list_per_page = 5
+
+Para possibilitar edição no memu:
+
+list_editable = ('publicada',)
+
+Para alterar ordem de exibição de items no index:
+
+Ir → views.py
+alterara variável: 
+receitas = Receita.objects.order_by('-date_receita').filter(publicada=True)
+
+Criando campo para armazenar imagem.
+foto_receita = models.ImageField(upload_to = 'foto/%d/%m/%Y/', blank=True) 
+
+Valor salvo no banco: foto/24/08/2022/bolo-chocolate.jpg
+
+Ir → settings.py
+criar uma rota para mídia
+
+# Media
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+No banco de dados é salvo o caminho para acessar a imagem e não a imagem.
+
+Antes intalar o pacote pillow para trabalhar com imagens:
+pip install pillow
+caso necessario atualizar o pip: 
+pip install --upgrade pip
+
+→ gera a migração
+
+→ criar a url no urls.py do alurareceitas
+
+urlpatterns = [
+    path('', include('receitas.urls')),
+    path('admin/', admin.site.urls),
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT )
+
+Ajustar o index para receber a foto:
+
+Ir para index.html
