@@ -692,3 +692,68 @@ urlpatterns = [
 Ajustar o index para receber a foto:
 
 Ir para index.html
+
+{% if receita.foto_receita == null %}
+<img src="{% static 'img/bg-img/foto_receita.png' %}" alt="">
+{% else %}
+<img src="{{ receita.foto_receita.url }}" alt="">
+{% endif %}
+
+No site ajustar barra de busca: 
+
+Ir → urls.py receita:
+path('buscar', views.buscar, name = 'buscar')
+
+Ir → views.py e criar o método buscar:
+def buscar(request):
+    return render(request, 'buscar.html')
+
+No index.html e receita.html:
+<form action="{% url 'buscar' %}">
+<input type="text" name="buscar" placeholder="O que está procurando...">
+
+No template busca.html
+Copiar index e no final acrescentar código para else
+
+{% else %}
+<div class="col-12 col-sm-6 col-lg-4">
+    Receita não Encontrada
+</div>
+
+No views.py atualizar def:
+def buscar(request):
+    lista_receitas = Receita.objects.order_by('-date_receita').filter(publicada=True)
+    
+    if'buscar' in request.GET: 
+        nome_a_buscar = request.GET['buscar']
+        if buscar:
+            lista_receitas = lista_receitas.filter(nome_receita__icontains=nome_a_buscar)
+    
+    dados = {
+        'receitas' : lista_receitas
+    }
+
+    return render(request, 'buscar.html', dados)
+
+    alterando no admin vizualização das variaveis: 
+     no arquivo models.py colocar a função str
+
+     class Receita(models.Model):
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
+    nome_receita = models.CharField(max_length=200) # Campo de texto.
+    ingredientes = models.TextField() # Caixa de texto maior.
+    modo_preparo = models.TextField()
+    tempo_preparo = models.IntegerField()
+    rendimento = models.CharField(max_length=100)
+    categoria = models.CharField(max_length=100)
+    date_receita = models.DateTimeField(default=datetime.now, blank=True)
+    foto_receita = models.ImageField(upload_to = 'foto/%d/%m/%Y/', blank=True)
+    publicada = models.BooleanField(default=False)
+    def __str__(self):
+        return self.nome
+
+Criar partial para busca.html:
+
+no folder partials criar um arquivo _busca.html por padrão colocar no inicio _
+no html por {% include 'partials/menu.html' %}
+
