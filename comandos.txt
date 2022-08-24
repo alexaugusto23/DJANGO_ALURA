@@ -605,3 +605,26 @@ Migrar a tabela para o banco:
 python manage.py makemigrations
 1 → ''
 python manage.py migrate
+
+# Alterando vizualização dalista de ForeignKey
+
+ir → models.py pessoas
+
+from django.db import models
+from datetime import datetime
+
+# Create your models here.
+class Pessoa(models.Model):
+    nome = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    def __str__(self):
+        return self.nome
+
+# alterar o template para exibir o nome de pessoa: 
+
+Como a pessoa já esta no models de receita o views.py não precisa de alteração.
+
+Flag True para criar uma edição:
+
+i
+ publicada = models.BooleanField(default=False)
