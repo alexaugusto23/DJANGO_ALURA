@@ -15,4 +15,4 @@ class Receita(models.Model):
     foto_receita = models.ImageField(upload_to = 'foto/%d/%m/%Y/', blank=True)
     publicada = models.BooleanField(default=False)
     def __str__(self):
-        return self.nome
+        return self.nome_receita
